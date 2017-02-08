@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+
+<html lang="hr">
+	<head>
+		
+		<title> Korisnički račun </title>
+		<meta name="description" content="Projekt vizualizacije znanstvenih podataka (citata) uz pomoć NooJ alata" />
+		<meta name="keywords" content="Nooj, Projekt, Vizualizacija, Podatci, Citati, Citiranje, Znanstveni podatci" />
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">	
+		<meta name="author" content="Dario Poljak">
+		<meta name="author" content="Marko Požega">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css" href="css/design.css">
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+		<!-- Jquery/JS -->
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="css/skeleton.css">
+		<link rel="stylesheet" type="text/css" href="css/normalize.css">
+		<link rel="stylesheet" type="text/css" href="css/design.css">
+		<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+
+		
+				<script>
+			
+			
+            $(function() {
+				$( "#coAuthor1" ).autocomplete({
+				  source: "autocomplete.php"
+				});
+			  });
+			  
+			$(function() {
+				$( "#coAuthor2" ).autocomplete({
+				  source: "autocomplete.php"
+				});
+			  });
+			  
+			$(function() {
+				$( "#coAuthor3" ).autocomplete({
+				  source: "autocomplete.php"
+				});
+			  });
+			  
+			$(function() {
+				$( "#coAuthor4" ).autocomplete({
+				  source: "autocomplete.php"
+				});
+			  });
+			  
+			$(function() {
+				$( "#coAuthor5" ).autocomplete({
+				  source: "autocomplete.php"
+				});
+			  });
+        
+			
+			function showDiv()
+			{
+				$('#moreAuthors').toggle();
+			}
+			
+			function titleCheck()
+			{
+				if($('#paperTitle').val() != "")
+				{
+					$("#paperTitle").attr('class','valid');
+
+				}
+				else
+				{
+					$("#paperTitle").attr('class','invalid');
+
+				}
+
+				checkAll();
+			}
+
+			function yearCheck()
+			{
+				if($('#paperYear').val() != "")
+				{
+					$("#paperYear").attr('class','valid');
+					
+
+				}
+				else
+				{
+					$("#paperYear").attr('class','invalid');
+
+				}
+
+				checkAll();
+			}
+
+			function checkAll()
+			{
+				if( $("#titleName").attr('class') == 'valid' &&
+				    $("#titleYear").attr('class') == 'valid')
+				{
+					$("#submitButton").removeAttr('disabled');
+				}
+				else
+				{
+					$("#submitButton").attr('disabled','true');
+				}
+			}
+
+		 </script>
+	</head>
+	
+	<body>
+    <div id="large-header" class="large-header">
+    <canvas height="699" width="1536" id="demo-canvas"></canvas>
+    </div>
+    <script src="js/TweenLite.js"></script>
+    <script src="js/EasePack.js"></script>
+    <script src="js/rAF.js"></script>
+    <script src="js/demo-1.js"></script>
+	<div id="splash"></div>	
+	<header>
+		<div id='Navigation'>	
+			<div class="container row">
+				<a href='index.html' class="three columns"><i class="fa fa-home"></i> Naslovnica </a>
+				<a href='publicTrees.html' class="three columns"> Javna stabla </a>
+				<a href='account.html' class="three columns"> Moje stablo </a>
+				<a href='login.html' class="three columns"> Log In/Out </a> <!-- Stavi samo da se ovo mijenja ovisno o tomu jesi ulogiran ili ne -->
+			</div>
+		</div>
+	</header>
+	<div class="container" id="whiteground">
+			<div id='paperSubmit'>
+			<h1>Predaja novog rada:</h1>
+			<form action="paperUpload.php" method="post" enctype="multipart/form-data">
+				<label>Navedite ime rada:</label>
+				<input type="text" name="paperTitle" id="paperTitle" class='' placeholder='Naziv rada' onchange='titleCheck()'> </br>
+				<label>Navedite godinu objave rada:</label>
+				<input type="text" name="paperYear" id="paperYear" maxlength="4" class='' placeholder='Godina objave rada' onchange='yearCheck()'> </br>
+				<input type="checkbox" name="moreAuthorsCheckbox" id="moreAutorsCheckbox" value="0" onchange='showDiv()' id="koautor">
+					<label for="koautor" style="display:inline;"> Rad je pisan u koautorstvu.</label>
+				</input>				
+				</br>
+				<div id="moreAuthors" style="display:none;" class='ui-widget'>
+					<input type="text" name="coAuthor1" id="coAuthor1" class='' placeholder='Koautor 1' > </br>
+					<input type="text" name="coAuthor2" id="coAuthor2" class='' placeholder='Koautor 2' > </br>
+					<input type="text" name="coAuthor3" id="coAuthor3" class='' placeholder='Koautor 3' > </br>
+					<input type="text" name="coAuthor4" id="coAuthor4" class='' placeholder='Koautor 4' > </br>
+					<input type="text" name="coAuthor5" id="coAuthor5" class='' placeholder='Koautor 5' > </br>
+				</div>
+				<label>Odaberite datoteku:</label>
+				<input type="file" name="paperToUpload" id="paperToUpload"> </br>
+				<input type="submit" value="Upload" id="submitButton" name="submitButton" disabled="true">
+			</form>
+		</div>
+		
+		<div id='privacySettings'>
+			<label>Postavke privatnosti:</label>
+			<form id='publicSwithForm' method='post' action='publicSwitch.php'>
+				
+				<input type="checkbox" name="switchState" value="1" id="privatno">
+					<label for="privatno" style="display:inline;"> Dopusti drugima da vide moje stablo.</label>
+				</input>
+			</br>
+				<input type='submit'id='switchStateButton' class="button-primary" name='switchStateButton' value='Potvrdi'/>		
+			</form>
+		</div>
+	</body>
+</html>

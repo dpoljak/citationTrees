@@ -1,0 +1,158 @@
+html{
+	font-family: 'Open Sans', sans-serif;
+	height:100%;
+	overflow-y:scroll;
+}
+
+#splash2{
+	z-index:-5;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-image: url(../img/bg.jpg);
+	background-size: cover;
+    text-align:center;
+}
+
+.large-header{
+    pointer-events:none;
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+}
+
+.large-header canvas{
+    pointer-events:none;
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+}
+
+#splash{
+	z-index:-5;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-image: url(../img/bg.jpg);
+	background-size: cover;
+}
+
+#whiteground{
+	background-color:rgba(255,255,255,.9);
+	padding:1% 5%;
+	border-bottom-left-radius: 1em;
+	border-bottom-right-radius: 1em;
+    color:#222;
+}
+form {
+    color:#222;
+}
+#content{
+	margin-top:1%;
+	position:absolute;
+    width:100%;
+	top:100%; 
+	text-align:justify;
+    left:auto;
+}
+
+#Navigation{
+	z-index:5;
+	background-color:rgba(1,1,1,.7);
+	text-align:center;
+	width:100%;
+}
+
+#Navigation a{
+	text-transform:Uppercase;
+	word-break:keep-all;
+	text-decoration:none;
+	position:relative;
+	color:#FFF;
+	margin:2% 0%;
+	-webkit-transition: all 0.7s;
+	-moz-transition: all 0.7s;
+	-o-transition: all 0.7s;
+	transition: all 0.7s;
+	font-weight:bold;
+	transition: .5s ease color;
+}
+
+#Navigation a:after{
+	content: '';
+	display: block;
+	margin: auto;
+	height: 5px;
+	width: 0px;
+	background: transparent;
+	-webkit-transition: width .5s ease, background-color .5s ease;
+	-moz-transition: width .5s ease, background-color .5s ease;
+	-o-transition: width .5s ease, background-color .5s ease;
+	transition: width .5s ease, background-color .5s ease;
+	
+}
+
+#Navigation a:hover:after {
+  width: 100%;
+  background-color:#CCF;
+  }
+  
+ #Navigation a:hover {
+	color:#CCF;
+}
+
+#foot{
+    margin-left:50%;
+    margin-right:auto;
+	position:absolute;
+	bottom:0;
+	color:#FFF;
+	display:block;
+	font-size:5em;
+	font-weight:bold;
+    display:inline-block;
+}
+#foot a{
+    text-decoration:none;
+    color:#FFF;
+}
+
+#Login{
+	text-align:center;
+}
+
+#Login h1{
+	text-align:initial;
+}
+
+.container .row{
+	padding-top:0.5em;
+	padding-bottom:0.5em;
+}
+#title {
+    z-index: 500;
+    position:relative;
+    top:35%;
+    font-family: 'Voltaire', sans-serif;
+    font-size:10em;
+    color:#FFF;
+}
+
+@media (max-width: 600px) {
+    #title { 
+        font-size:4em;
+        top:50%;
+    }
+}
+
+
+.stablo{
+    padding-top:10px;
+    max-width:100%;
+    background:rgba(1,1,1,.7);
+    padding-bottom:10%;
+}

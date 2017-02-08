@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html lang="hr">
+	<head>
+		
+		<title>Registracija</title>
+		<meta name="description" content="Projekt vizualizacije znanstvenih podataka (citata) uz pomoć NooJ alata" />
+		<meta name="keywords" content="Nooj, Projekt, Vizualizacija, Podatci, Citati, Citiranje, Znanstveni podatci" />
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">	
+		<meta name="author" content="Dario Poljak">
+		<meta name="author" content="Marko Požega">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/skeleton.css">
+		<link rel="stylesheet" type="text/css" href="css/normalize.css">
+		<link rel="stylesheet" type="text/css" href="css/design.css">
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
+		<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+		
+		<script>
+		   $(document).ready(function(){
+            	    $("#Username").change(function(){
+                        var username = $("#Username").val();
+				 
+				 if(username != ''){
+						
+						
+						$.post('usernameCheck.php',{Username: username}, function(data) {
+							
+							if(data == 0)
+							{
+								
+								$("#Username").attr('class','valid');
+								
+							}
+							else
+							{
+								$("#Username").attr('class','invalid');
+								alert('Korisničko ime je već zauzeto. Molimo Vas odaberite neko drugo korisničko ime.');
+
+								
+							}
+						});
+						
+					}
+					
+				 });
+				 
+			});
+				 
+		</script>
+
+		
+		<script>
+			
+			
+			function formCheckEmail()
+			{
+				
+				var re = /\S+@\S+\.\S+/;
+				if(re.test($("#Email").val()))
+				{
+					$("#Email").attr('class','valid');
+				}
+				else
+				{
+					$("#Email").attr('class','invalid');
+					alert('Unešeni email nije u pravilnoj formi.');
+				}
+				
+				checkAll();
+				
+			}
+			
+			function formCheckName()
+			{
+				var name = $("#Name").val();
+				if( name != "")
+				{
+					$("#Name").attr('class','valid');
+				}
+				else
+				{
+					$("#Name").attr('class','invalid');
+					alert('Molimo Vas pravilno popunite polje Ime.')
+				}
+				
+				checkAll();
+				
+			}
+			
+			function formCheckSurname()
+			{
+				var surname = $("#Surname").val();
+				if( surname != "")
+				{
+					$("#Surname").attr('class','valid');
+				}
+				else
+				{
+					$("#Surname").attr('class','invalid');
+					alert('Molimo Vas pravilno popunite polje Prezime.')
+				}
+				
+				checkAll();
+				
+			}
+			
+			function formCheckCountry()
+			{
+				var country = $("#Country").val();
+				if( country != "")
+				{
+					$("#Country").attr('class','valid');
+				}
+				else
+				{
+					$("#Country").attr('class','invalid');
+					alert('Molimo Vas pravilno popunite polje Država.')
+				}
+				
+				checkAll();
+				
+			}
+			
+			function formCheckInstitution()
+			{
+				var institution = $("#Institution").val();
+				if( institution != "")
+				{
+					$("#Institution").attr('class','valid');
+				}
+				else
+				{
+					$("#Institution").attr('class','invalid');
+					alert('Molimo Vas pravilno popunite polje Institucija.')
+				}
+				
+				checkAll();
+				
+			}
+			
+			
+			function formCheckPassword()
+			{
+				var password = $("#Password").val();
+				if(password.length > 6)
+				{
+					$("#Password").attr('class','valid');
+				}
+				else
+				{
+					$("#Password").attr('class','invalid');
+					alert('Korisnička lozinka je prekratka. Molimo Vas promjenite lozinku.')
+				}
+				
+				checkAll();
+			}
+			
+			function formCheckPasswordMatch()
+			{
+				var password = $("#Password").val();
+				var passwordRe = $("#RepeatedPassword").val();
+				if(password == passwordRe)
+				{
+					$("#RepeatedPassword").attr('class','valid');
+				}
+				else
+				{
+					$("#RepeatedPassword").attr('class','invalid');
+					alert('Lozinke se ne podudaraju, molimo Vas provjerite lozinke.')
+				}
+				
+				checkAll();
+			}
+			
+			function checkAll()
+			{
+				if( $("#Name").attr('class') == 'valid' &&
+				    $("#Surname").attr('class') == 'valid' &&
+				    $("#Email").attr('class') == 'valid' &&
+				    $("#Password").attr('class') == 'valid' &&
+				    $("#RepeatedPassword").attr('class') == 'valid' &&
+				    $("#Username").attr('class') == 'valid' &&
+					$("#Country").attr('class') == 'valid')
+				   {
+				   		$("#RegisterButton").removeAttr('disabled');
+				   }
+				else
+					{
+						$("#RegisterButton").attr('disabled','true');
+					}
+			}
+			
+			
+		</script>
+
+		
+	</head>
+	
+	<body>
+    <div id="large-header" class="large-header">
+    <canvas height="699" width="1536" id="demo-canvas"></canvas>
+    </div>
+    <script src="js/TweenLite.js"></script>
+    <script src="js/EasePack.js"></script>
+    <script src="js/rAF.js"></script>
+    <script src="js/demo-1.js"></script>
+	<div id="splash"></div>
+	<header>
+		<div id='Navigation'>	
+			<div class="container row">
+				<a href='index.html' class="three columns"><i class="fa fa-home"></i> Naslovnica </a>
+				<a href='publicTrees.html' class="three columns"> Javna stabla </a>
+				<a href='account.html' class="three columns"> Moje stablo </a>
+				<a href='login.html' class="three columns"> Log In/Out </a> <!-- Stavi samo da se ovo mijenja ovisno o tomu jesi ulogiran ili ne -->
+			</div>
+		</div>
+	</header>
+		<div class="container" id="whiteground">
+		<h1>Registracija:</h1>
+			<div id='Register'>
+				<form id='RegistrationForm' action='registrationProcess.php' method='post'>
+					<div class="row">
+						<input type='text' id='Name' name='Name' class='four columns' placeholder='Ime' onchange='formCheckName()'/> 
+						<input type='text' id='MiddleName' name='MiddleName' class='four columns' placeholder='Srednje ime'/> 
+						<input type='text' id='Surname' name='Surname' class='four columns' placeholder='Prezime' onchange='formCheckSurname()'/> 
+					</div>
+					<div class="row">
+						<input type='text' id='Email' name='Email' class='six columns' placeholder='Email' onchange='formCheckEmail()'/> 
+					</div>
+					<div class="row">
+						<input type='text' id='Country' name='Country' class='six columns' placeholder='Država' onchange='formCheckCountry()'/> 
+					</div>
+					<div class="row">
+						<input type='text' id='Institution' name='Institution' class='twelve columns' placeholder='Institucija' onchange='formCheckInstitution()'/> 
+					</div>
+					<div class="row">
+						<input type='text' id='Username' name='Username' class='u-full-width' placeholder='Željeno korisničko ime' onchange='formCheckUsername()'/> 
+					</div>
+					<div class="row">
+						<input type='password' id='Password' name='Password' class='six columns' placeholder='Lozinka' onchange='formCheckPassword()'/>
+						<input type='password' id='RepeatedPassword' name='RepeatedPassword' class='six columns' placeholder='Ponovite lozinku' onchange='formCheckPasswordMatch()'/> 
+					</div><br/>
+						<input type='submit' id='RegisterButton' value='Registriraj se' disabled='true' class="button-primary"/>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
